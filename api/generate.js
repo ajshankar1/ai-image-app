@@ -12,29 +12,34 @@ export default async function handler(req, res) {
 
     const finalPrompt = `${prompt}, ${stylePrompt[style]}`;
 
-    const response = await fetch(
-      "https://api.replicate.com/v1/models/stability-ai/sdxl/img2img",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${process.env.REPLICATE_API_KEY}`,
-        },
-        body: JSON.stringify({
+    const response = await fetch("https://api.replicate.com/v1/predictions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${process.env.REPLICATE_API_KEY}`,
+      },
+      body: JSON.stringify({
+        version: "5c7d927d6c4a45c265680b5b5e3b300f68e5f1f898a79056ba8188b5bfe0f733",
+        input: {
           prompt: finalPrompt,
           image: image,
-        }),
-      }
-    );
+          strength: 0.65,
+        },
+      }),
+    });
 
     const result = await response.json();
 
-    if (result?.output?.[0]) {
+    if (result?.output && result.output[0]) {
       res.status(200).json({ output: result.output[0] });
     } else {
-      res.status(500).json({ error: "Generation failed" });
+      res.status(500).json({ error: "Generation failed", details: result });
     }
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: "Server error", details: error.message });
   }
 }
+
+export const config = {
+  runtime: "edge",
+};
