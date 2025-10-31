@@ -15,7 +15,7 @@ async function generateImage() {
   const reader = new FileReader();
 
   reader.onloadend = async () => {
-    const base64Image = reader.result.split(",")[1];
+    const base64Image = reader.result; 
 
     try {
       const response = await fetch("/api/generate", {
