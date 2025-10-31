@@ -21,7 +21,7 @@ export default async function handler(req) {
     const response = await fetch("https://api.replicate.com/v1/predictions", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json", // Ensure proper header
         Authorization: `Token ${process.env.REPLICATE_API_KEY}`,
       },
       body: JSON.stringify({
@@ -36,23 +36,21 @@ export default async function handler(req) {
 
     const result = await response.json();
 
-    // Return the generated image URL (or error if any)
     if (result?.output?.[0]) {
       return new Response(JSON.stringify({ output: result.output[0] }), {
         headers: { "Content-Type": "application/json" }
       });
     } else {
-      return new Response(JSON.stringify({ error: "Generation failed", details: result }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" }
-      });
+      return new Response(
+        JSON.stringify({ error: "Generation failed", details: result }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
     }
-
   } catch (error) {
     // Catch any server-side errors
-    return new Response(JSON.stringify({ error: "Server error", details: error.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
+    return new Response(
+      JSON.stringify({ error: "Server error", details: error.message }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 }
