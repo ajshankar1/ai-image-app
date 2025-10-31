@@ -24,7 +24,7 @@ export default async function handler(req) {
         Authorization: `Token ${process.env.REPLICATE_API_KEY}`,
       },
       body: JSON.stringify({
-        version: "5c7d927d6c4a45c265680b5b5e3b300f68e5f1f898a79056ba8188b5bfe0f733",
+        version: "ac732df4d8ecdde88ec90d1f1d15315c0d2799b0b4f0dc30d8b1d3bdfc8fcd9f",
         input: {
           prompt: finalPrompt,
           image: image,
