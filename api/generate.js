@@ -24,12 +24,13 @@ export default async function handler(req) {
         Authorization: `Token ${process.env.REPLICATE_API_KEY}`,
       },
       body: JSON.stringify({
-        version: "e2e3f51e1b88dfcd9c7eae48eb2e5df0f4d0d41b57e8d9d9b5c2f0b9ba02e4c9",
+        version: "610b3f3e8cd8ca39f1f5aa63fa53be15bbf241b7f0d5e4d8a5edff1ef7c7a0cf",
+input: {
+  prompt: finalPrompt,
+  init_image: image,
+  strength: 0.6
+}
 
-        input: {
-          prompt: finalPrompt,
-          image: image,
-          strength: 0.65
         }
       }),
     });
