@@ -18,7 +18,7 @@ export default async function handler(req) {
     const finalPrompt = `${prompt}, ${stylePrompt[style]}`;
 
     // Fetch from Replicate (using the correct version ID)
-    const response = await fetch("https://api.replicate.com/v1/predictions", {
+    const response = await fetch("https://api.fal.ai/fal-ai/flux-lora/Img2Img/run", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Ensure proper header
