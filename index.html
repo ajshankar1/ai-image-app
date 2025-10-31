@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Image Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    }
+    button {
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+    #result img {
+      width: 100%;
+      margin-top: 15px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>My AI Image Generator</h2>
+
+  <div class="box">
+    <label><strong>Upload Image</strong></label><br>
+    <input type="file" id="imageInput" accept="image/*" />
+  </div>
+
+  <div class="box">
+    <label><strong>Text Prompt</strong></label><br>
+    <textarea id="promptInput" rows="3" style="width:100%;"></textarea>
+  </div>
+
+  <div class="box">
+    <label><strong>Art Style</strong></label><br>
+    <select id="styleSelect" style="width:100%; padding:8px;">
+      <option value="realistic">Realistic</option>
+      <option value="cinematic">Cinematic</option>
+      <option value="anime">Anime</option>
+      <option value="watercolor">Watercolor</option>
+      <option value="oil painting">Oil Painting</option>
+    </select>
+  </div>
+
+  <div class="box">
+    <button onclick="generateImage()">Generate Image</button>
+  </div>
+
+  <div id="result" class="box">
+    <h3>Generated Image</h3>
+    <div id="output"></div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
+
